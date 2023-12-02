@@ -4,8 +4,14 @@ var generateBtn = document.querySelector("#generate");
 // create genratePassword function
 function generatePassword() {
   // 1.) prompt the user for password criteria
+  
   //   1a password lenght 8-128
+  var passwordLength = i > 8;
   //   1b lowercase, uppercase, special-characters
+  var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+  var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var specialCharacters = "0123456789!@#$%^&*()_-";
+
 
   // 2.) validate input,
 
