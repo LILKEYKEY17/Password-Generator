@@ -1,40 +1,51 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// create genratePassword function
 function generatePassword() {
-  // 1.) prompt the user for password criteria
-  
-  //   1a password lenght 8-128
-  var passwordLength = i > 8;
-  //   1b lowercase, uppercase, special-characters
-  var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-  var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var specialCharacters = "0123456789!@#$%^&*()_-";
+// Critia prompts for password to generate
+ var uppercase = confirm("Your password should have an uppercase letter! Click OK to use");
+ var lowercase = confirm("Your password should have a lowercase letter! Click OK to use");
+ var symbols = confirm("Your password should have a symbol! Click OK to use");
+ var numbers = confirm("Your password should have a number! Click OK to use");
+ var keyLength = prompt("Password must be between 8 and 128 characters! Click OK to use");
 
+// Password variables for allowable passwords characters
+ var uppercaseABC = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
+ var lowercaseABC ="abcdefghijklmnopqrstuvwxyz";
+ var specialSymbols ="!@#$%^&*()?.<>|=+,[-_]"
+ var numeric ="0123456789"
+ var multiSelect =[];
 
-  // 2.) validate input,
+//Input critia
+ if (keyLength < 8 || keyLength > 128) {
+  alert("Your password does not meet the critia");
+  var keyLength = prompt("Password must be between 8 and 128 characters in length.");
+ }
 
-  // 3.) generate password
+ if (uppercase === false && lowercase === false && symbols === false && numbers === false) {
+ return "You must pick at least one character option!";
+ };
 
+ if (lowercaseABC) {multiSelect += lowercaseABC;}
+ if (uppercaseABC) {multiSelect += uppercaseABC;}
+ if (numeric) {multiSelect += numeric;}
+ if (specialSymbols) {multiSelect += specialSymbols;}
 
-
-  // 4.) display password on page
-  return password;
+ let finalPassword = ""
+ for (let i = 0; i < keyLength; i++) {
+  let rng =[Math.floor(Math.random() * multiSelect.length)];
+  finalPassword = finalPassword + multiSelect[rng];
+ }
+  return finalPassword;
 }
-
-
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
+//
